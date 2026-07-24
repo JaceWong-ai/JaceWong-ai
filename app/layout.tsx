@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -13,64 +12,55 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host =
-    requestHeaders.get("x-forwarded-host") ||
-    requestHeaders.get("host") ||
-    "jacewong.ai";
-  const protocol =
-    requestHeaders.get("x-forwarded-proto") ||
-    (host.includes("localhost") ? "http" : "https");
-  const metadataBase = new URL(`${protocol}://${host}`);
+const metadataBase = new URL(
+  process.env.NEXT_PUBLIC_SITE_URL || "https://jacewong-ai.github.io",
+);
 
-  return {
-    metadataBase,
-    title: {
-      default: "Jace Wong — Intelligence & Beyond",
-      template: "%s — Jace Wong",
-    },
+export const metadata: Metadata = {
+  metadataBase,
+  title: {
+    default: "Jace Wong — Intelligence & Beyond",
+    template: "%s — Jace Wong",
+  },
+  description:
+    "Jace Wong is an AI practitioner exploring intelligence, philosophy, reading, investing, and the questions that shape what comes next.",
+  keywords: [
+    "Jace Wong",
+    "artificial intelligence",
+    "AI",
+    "philosophy",
+    "investing",
+    "personal blog",
+  ],
+  authors: [{ name: "Jace Wong" }],
+  creator: "Jace Wong",
+  openGraph: {
+    type: "website",
+    url: metadataBase,
+    siteName: "Jace Wong",
+    title: "Jace Wong — Intelligence & Beyond",
     description:
-      "Jace Wong is an AI practitioner exploring intelligence, philosophy, reading, investing, and the questions that shape what comes next.",
-    keywords: [
-      "Jace Wong",
-      "artificial intelligence",
-      "AI",
-      "philosophy",
-      "investing",
-      "personal blog",
+      "AI is my medium, not my boundary. Notes on intelligence, philosophy, reading, and capital.",
+    images: [
+      {
+        url: new URL("/og.png", metadataBase).toString(),
+        width: 1731,
+        height: 909,
+        alt: "Jace Wong — Intelligence & Beyond",
+      },
     ],
-    authors: [{ name: "Jace Wong" }],
-    creator: "Jace Wong",
-    openGraph: {
-      type: "website",
-      url: metadataBase,
-      siteName: "Jace Wong",
-      title: "Jace Wong — Intelligence & Beyond",
-      description:
-        "AI is my medium, not my boundary. Notes on intelligence, philosophy, reading, and capital.",
-      images: [
-        {
-          url: new URL("/og.png", metadataBase).toString(),
-          width: 1731,
-          height: 909,
-          alt: "Jace Wong — Intelligence & Beyond",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Jace Wong — Intelligence & Beyond",
-      description:
-        "AI is my medium, not my boundary. Notes from the moving edge.",
-      images: [new URL("/og.png", metadataBase).toString()],
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-  };
-}
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jace Wong — Intelligence & Beyond",
+    description: "AI is my medium, not my boundary. Notes from the moving edge.",
+    images: [new URL("/og.png", metadataBase).toString()],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 const themeScript = `
   (() => {

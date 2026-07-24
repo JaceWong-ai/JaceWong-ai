@@ -43,5 +43,11 @@ own route at `/blog/[slug]`.
 ```bash
 npm run dev
 npm run build
+npm run build:pages
 npm test
 ```
+
+`npm run build:pages` creates the static GitHub Pages artifact in `out/`. The
+public root site is deployed from the separate
+[`JaceWong-ai.github.io`](https://github.com/JaceWong-ai/JaceWong-ai.github.io)
+repository, while this repository remains the editable source of truth.

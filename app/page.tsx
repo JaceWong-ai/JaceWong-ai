@@ -76,10 +76,12 @@ function FieldCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const context = canvas.getContext("2d");
-    if (!context) return;
+    const targetCanvas = canvasRef.current;
+    if (!targetCanvas) return;
+    const canvas: HTMLCanvasElement = targetCanvas;
+    const targetContext = canvas.getContext("2d");
+    if (!targetContext) return;
+    const context: CanvasRenderingContext2D = targetContext;
 
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
