@@ -9,13 +9,6 @@ import { SiteNav } from "@/components/site-nav";
 import { SymbolStream } from "@/components/symbol-stream";
 import { posts } from "@/lib/blog";
 
-const focusAreas = [
-  "AI systems",
-  "Technology & philosophy",
-  "Mathematics",
-  "Reading & learning",
-];
-
 export default function Home() {
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,26 +36,24 @@ export default function Home() {
 
         <div className="home-hero-copy">
           <div className="home-introduction">
-            <p className="home-name">Jace Wong</p>
             <h1>
-              <RevealWords text="AI, systems, and the" auto />
+              <RevealWords text="Essays and experiments" auto />
               <br />
-              <RevealWords text="questions around them." auto delay={260} />
+              <RevealWords text="on intelligence." auto delay={240} />
             </h1>
             <p>
-              I build with artificial intelligence and study how it changes
-              the way we think, decide, and create.
+              Hi, I&apos;m Jace, and this is my blog. I write about AI,
+              software, mathematics, and the books that shape how I think.
             </p>
           </div>
 
           <div className="home-notebook">
             <p>
-              This is my public notebook—essays, research notes, and ideas in
-              progress across AI, technology, philosophy, mathematics, and
-              reading.
+              Each piece aims to make difficult ideas easier to explore through
+              clear writing, visualizations, and small interactive experiments.
             </p>
             <Link href="/blog">
-              Read the writing <span>↗</span>
+              Read the essays <span>↘</span>
             </Link>
           </div>
         </div>
@@ -76,11 +67,11 @@ export default function Home() {
       <section className="home-writing" id="writing">
         <header data-reveal>
           <div>
-            <p>Selected writing</p>
+            <p>Writing</p>
             <span>AI · Technology · Reading</span>
           </div>
-          <h2>Ideas, made public.</h2>
-          <Link href="/blog">View all ↗</Link>
+          <h2>Latest essays</h2>
+          <Link href="/blog">All writing ↗</Link>
         </header>
 
         <div className="home-posts">
@@ -95,58 +86,14 @@ export default function Home() {
               <div>
                 <p>{post.category}</p>
                 <h3>{post.title}</h3>
-                <span>{post.dek}</span>
               </div>
               <div className="home-post-meta">
+                <span>{post.date}</span>
                 <span>{post.readingTime}</span>
                 <i>↗</i>
               </div>
             </Link>
           ))}
-        </div>
-      </section>
-
-      <section className="home-about" id="about">
-        <div className="home-about-label" data-reveal>
-          <span>About</span>
-          <i />
-        </div>
-
-        <div className="home-about-copy" data-reveal>
-          <h2>
-            I work with AI.
-            <br />
-            <em>I think beyond the model.</em>
-          </h2>
-          <p>
-            I&apos;m Jace Wong, an AI practitioner interested in the systems
-            behind intelligence and the ideas beneath them. I write where
-            technology meets philosophy and mathematics: what becomes
-            possible—and what remains human—when intelligence is abundant?
-          </p>
-        </div>
-
-        <div className="home-focus" data-reveal>
-          {focusAreas.map((area, index) => (
-            <div key={area}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <p>{area}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="home-contact" id="connect">
-        <p data-reveal>Connect</p>
-        <div data-reveal>
-          <h2>Elsewhere on the web.</h2>
-          <a
-            href="https://github.com/JaceWong-ai"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub <span>↗</span>
-          </a>
         </div>
       </section>
 

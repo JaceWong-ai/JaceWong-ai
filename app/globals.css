@@ -3095,12 +3095,12 @@ a {
   position: absolute;
   z-index: 4;
   right: max(var(--page-pad), calc((100vw - 76rem) / 2));
-  bottom: clamp(3rem, 6.5vh, 5.5rem);
+  bottom: clamp(2.5rem, 5.5vh, 4.5rem);
   left: max(var(--page-pad), calc((100vw - 76rem) / 2));
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.78fr);
-  gap: clamp(3rem, 8vw, 8rem);
-  align-items: end;
+  grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 0.78fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: start;
 }
 
 .home-name {
@@ -3114,42 +3114,41 @@ a {
 }
 
 .home-introduction h1 {
-  max-width: 38rem;
-  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
-  font-weight: 470;
-  letter-spacing: -0.045em;
-  line-height: 1.02;
+  max-width: 30rem;
+  font-size: clamp(1.55rem, 2.2vw, 2.05rem);
+  font-weight: 520;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
 }
 
 .home-introduction > p:last-child {
-  max-width: 28rem;
-  margin-top: 1.45rem;
-  color: rgba(222, 227, 241, 0.62);
-  font-size: 0.8rem;
-  line-height: 1.66;
+  max-width: 30rem;
+  margin-top: 1.65rem;
+  color: rgba(222, 227, 241, 0.66);
+  font-size: 0.85rem;
+  line-height: 1.72;
   animation: home-copy-in 1s 340ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .home-notebook {
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(219, 226, 244, 0.24);
+  padding-top: 0.15rem;
   animation: home-copy-in 1s 460ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .home-notebook > p {
-  max-width: 27rem;
-  color: rgba(222, 227, 241, 0.66);
-  font-family: var(--font-serif);
-  font-size: clamp(0.98rem, 1.45vw, 1.18rem);
-  line-height: 1.58;
+  max-width: 29rem;
+  color: rgba(222, 227, 241, 0.68);
+  font-size: 0.85rem;
+  line-height: 1.72;
 }
 
 .home-notebook > a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1.4rem;
-  padding-top: 0.9rem;
+  max-width: 29rem;
+  margin-top: 1.25rem;
+  padding-top: 0.8rem;
   border-top: 1px solid rgba(219, 226, 244, 0.14);
   color: #f1f4fb;
   font-size: 0.68rem;
@@ -3197,18 +3196,19 @@ a {
 }
 
 .home-writing {
-  padding: clamp(7rem, 12vw, 12rem)
+  padding: clamp(4.5rem, 7vw, 6.5rem)
     max(var(--page-pad), calc((100vw - 82rem) / 2));
-  background: #ece9e1;
-  color: #171714;
+  border-top: 1px solid rgba(222, 227, 241, 0.14);
+  background: #05070b;
+  color: #eef2fb;
 }
 
 .home-writing > header {
   display: grid;
-  grid-template-columns: 0.55fr 1.25fr auto;
+  grid-template-columns: 0.5fr 1fr auto;
   gap: 2rem;
   align-items: end;
-  margin-bottom: clamp(4rem, 8vw, 7rem);
+  margin-bottom: 2.4rem;
 }
 
 .home-writing > header > div > p,
@@ -3222,57 +3222,57 @@ a {
 .home-writing > header > div > span {
   display: block;
   margin-top: 0.5rem;
-  color: #77746d;
+  color: rgba(222, 227, 241, 0.48);
   font-size: 0.68rem;
 }
 
 .home-writing > header h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(3rem, 6vw, 6.1rem);
-  font-weight: 400;
-  letter-spacing: -0.062em;
-  line-height: 0.9;
+  font-size: clamp(1.7rem, 3vw, 2.8rem);
+  font-weight: 480;
+  letter-spacing: -0.045em;
+  line-height: 1;
 }
 
 .home-writing > header > a {
   padding-bottom: 0.35rem;
-  border-bottom: 1px solid rgba(23, 23, 20, 0.35);
+  border-bottom: 1px solid rgba(222, 227, 241, 0.34);
+  color: rgba(238, 242, 251, 0.76);
   font-size: 0.67rem;
 }
 
 .home-posts {
-  border-top: 1px solid rgba(23, 23, 20, 0.3);
+  border-top: 1px solid rgba(222, 227, 241, 0.22);
 }
 
 .home-post {
   position: relative;
   display: grid;
-  min-height: 14rem;
-  grid-template-columns: 0.16fr 1.25fr 0.3fr;
+  min-height: 9rem;
+  grid-template-columns: 0.13fr 1.35fr 0.42fr;
   gap: 2rem;
   align-items: center;
-  padding: 2.5rem 1rem;
-  border-bottom: 1px solid rgba(23, 23, 20, 0.3);
+  padding: 1.65rem 0.35rem;
+  border-bottom: 1px solid rgba(222, 227, 241, 0.22);
   transition:
     background-color 320ms ease,
     padding 320ms ease;
 }
 
 .home-post:hover {
-  padding-inline: 1.7rem;
-  background: #e1ddd3;
+  padding-inline: 1rem;
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .home-post-number {
   align-self: start;
-  color: #77746d;
+  color: rgba(222, 227, 241, 0.42);
   font-family: var(--font-mono);
   font-size: 0.52rem;
 }
 
 .home-post > div:nth-child(2) > p {
   margin-bottom: 0.75rem;
-  color: #77746d;
+  color: rgba(157, 182, 255, 0.76);
   font-family: var(--font-mono);
   font-size: 0.5rem;
   letter-spacing: 0.07em;
@@ -3281,10 +3281,10 @@ a {
 
 .home-post h3 {
   font-family: var(--font-serif);
-  font-size: clamp(2.3rem, 4.7vw, 5rem);
+  font-size: clamp(1.9rem, 3.5vw, 3.7rem);
   font-weight: 400;
-  letter-spacing: -0.058em;
-  line-height: 0.94;
+  letter-spacing: -0.05em;
+  line-height: 0.96;
   transition: transform 320ms ease;
 }
 
@@ -3306,7 +3306,7 @@ a {
   align-items: center;
   justify-content: flex-end;
   gap: 1.5rem;
-  color: #77746d;
+  color: rgba(222, 227, 241, 0.46);
   font-family: var(--font-mono);
   font-size: 0.5rem;
   text-transform: uppercase;
@@ -3317,9 +3317,9 @@ a {
   width: 3rem;
   height: 3rem;
   place-items: center;
-  border: 1px solid rgba(23, 23, 20, 0.25);
+  border: 1px solid rgba(222, 227, 241, 0.24);
   border-radius: 50%;
-  color: #171714;
+  color: #eef2fb;
   font-size: 1rem;
   font-style: normal;
   transition:
@@ -3329,8 +3329,8 @@ a {
 }
 
 .home-post:hover .home-post-meta i {
-  background: #171714;
-  color: #ece9e1;
+  background: #eef2fb;
+  color: #05070b;
   transform: translate(0.2rem, -0.2rem);
 }
 
@@ -3466,6 +3466,12 @@ a {
   border-color: rgba(222, 227, 241, 0.16);
   background: #05070b;
   color: #eef2fb;
+  padding: 2.5rem max(var(--page-pad), calc((100vw - 82rem) / 2));
+  align-items: center;
+}
+
+.home-v2 .footer-signature {
+  font-size: 1.25rem;
 }
 
 .home-v2 .site-footer > div:first-child p,
@@ -3569,7 +3575,7 @@ a {
   }
 
   .home-hero {
-    min-height: max(48rem, 100svh);
+    min-height: max(45rem, 100svh);
   }
 
   .home-hero-copy {
@@ -3577,11 +3583,11 @@ a {
     bottom: 3rem;
     left: 1.25rem;
     grid-template-columns: 1fr;
-    gap: 2.2rem;
+    gap: 1.5rem;
   }
 
   .home-introduction h1 {
-    font-size: clamp(1.8rem, 8vw, 2.7rem);
+    font-size: clamp(1.65rem, 6vw, 2.25rem);
   }
 
   .home-introduction > p:last-child {
@@ -3608,6 +3614,7 @@ a {
   .home-post {
     grid-template-columns: 2rem 1fr;
     gap: 1rem;
+    min-height: 8.5rem;
     padding-inline: 0;
   }
 
@@ -3657,7 +3664,7 @@ a {
   }
 
   .home-hero {
-    min-height: 52rem;
+    min-height: 48rem;
   }
 
   .home-introduction h1 br {
@@ -3665,21 +3672,21 @@ a {
   }
 
   .home-writing {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .home-writing > header h2 {
-    font-size: 3.2rem;
+    font-size: 2.15rem;
   }
 
   .home-post {
-    min-height: 12rem;
+    min-height: 8.5rem;
   }
 
   .home-post h3 {
     padding-right: 2.5rem;
-    font-size: 2.55rem;
+    font-size: 2.1rem;
   }
 
   .home-about-copy h2 {

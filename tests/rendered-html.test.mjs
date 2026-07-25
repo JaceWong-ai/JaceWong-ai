@@ -32,13 +32,15 @@ test("server-renders the finished personal homepage", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Jace Wong — Intelligence &amp; Beyond<\/title>/i);
-  assert.match(html, /AI, systems, and the/);
-  assert.match(html, /questions around them\./);
-  assert.match(html, /This is my public notebook/);
-  assert.match(html, /Selected writing/);
-  assert.match(html, /I work with AI\./);
-  assert.match(html, /I think beyond the model\./);
-  assert.doesNotMatch(html, /I live beyond it\.|Fields of practice|Field notes/);
+  assert.match(html, /Essays and experiments/);
+  assert.match(html, /on intelligence\./);
+  assert.match(html, /Hi, I(?:&apos;|&#x27;)m Jace/);
+  assert.match(html, /visualizations, and small interactive experiments/);
+  assert.match(html, /Latest essays/);
+  assert.doesNotMatch(
+    html,
+    /AI, systems, and the|This is my public notebook|I work with AI\.|I think beyond the model\.|<section class="home-about"|<section class="home-contact"/,
+  );
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 

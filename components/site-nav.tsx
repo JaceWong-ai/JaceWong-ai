@@ -26,7 +26,6 @@ export function SiteNav() {
   const links = [
     { label: "Index", href: "/" },
     { label: "Writing", href: "/blog" },
-    { label: "About", href: "/#about" },
   ];
 
   return (
