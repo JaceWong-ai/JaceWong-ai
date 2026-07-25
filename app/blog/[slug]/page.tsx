@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArticleContent } from "@/components/article-content";
 import { RevealWords } from "@/components/reveal-words";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
@@ -45,14 +46,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <SiteNav />
       <article>
         <header className="article-header">
+          <div className="blog-signal-grid" aria-hidden="true" />
           <div className="article-breadcrumb">
-            <Link href="/blog">Writing</Link>
+            <Link href="/blog">Blogs</Link>
             <span>/</span>
             <p>{post.number}</p>
           </div>
           <div className="article-kicker">
             <span>{post.category}</span>
-            <span>{post.date}</span>
+            <time dateTime={post.publishedAt}>{post.date}</time>
             <span>{post.readingTime} read</span>
           </div>
           <h1>
@@ -72,26 +74,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
         <div className="article-layout">
           <aside className="article-aside">
-            <p>Field note / {post.number}</p>
+            <p>Blog / {post.number}</p>
             <span>Written by Jace Wong</span>
+            <span>Published {post.date}</span>
             <i />
           </aside>
-          <div className="article-body">
-            {post.blocks.map((block, index) => {
-              if (block.type === "heading") {
-                return <h2 key={index}>{block.text}</h2>;
-              }
-              if (block.type === "quote") {
-                return (
-                  <blockquote key={index}>
-                    <span>“</span>
-                    {block.text}
-                  </blockquote>
-                );
-              }
-              return <p key={index}>{block.text}</p>;
-            })}
-          </div>
+          <ArticleContent post={post} />
           <aside className="article-progress" aria-hidden="true">
             <span>01</span>
             <i />
@@ -100,7 +88,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
 
         <footer className="article-end">
-          <p>Next field note</p>
+          <p>Continue reading</p>
           <Link href={`/blog/${nextPost.slug}`}>
             <span>{nextPost.number}</span>
             <h2>{nextPost.title}</h2>

@@ -1,7 +1,38 @@
+export type PostInline =
+  | string
+  | { type: "link"; text: string; href: string }
+  | { type: "citation"; reference: string };
+
 export type PostBlock =
   | { type: "paragraph"; text: string }
+  | { type: "rich-paragraph"; content: PostInline[] }
   | { type: "heading"; text: string }
-  | { type: "quote"; text: string };
+  | { type: "quote"; text: string }
+  | {
+      type: "figure";
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
+      caption: string;
+      credit?: { text: string; href: string };
+    }
+  | {
+      type: "equation";
+      latex: string;
+      label?: string;
+      caption?: string;
+    }
+  | { type: "note"; label: string; text: string };
+
+export type PostReference = {
+  id: string;
+  authors: string;
+  title: string;
+  source: string;
+  year: string;
+  href: string;
+};
 
 export type Post = {
   slug: string;
@@ -9,20 +40,25 @@ export type Post = {
   title: string;
   dek: string;
   category: string;
+  publishedAt: string;
   date: string;
+  timelineDate: string;
   readingTime: string;
   accent: string;
   blocks: PostBlock[];
+  references: PostReference[];
 };
 
-export const posts: Post[] = [
+const archive: Post[] = [
   {
     slug: "the-edge-is-a-moving-agreement",
     number: "001",
     title: "The edge is a moving agreement",
     dek: "What looks like a technical limit is often a temporary agreement between tools, language, and imagination.",
     category: "Artificial Intelligence",
-    date: "July 24, 2026",
+    publishedAt: "2026-07-10",
+    date: "July 10, 2026",
+    timelineDate: "10 JUL",
     readingTime: "6 min",
     accent: "violet",
     blocks: [
@@ -31,8 +67,27 @@ export const posts: Post[] = [
         text: "We talk about the edge of artificial intelligence as if it were a coastline: a clean division between what machines can do and what remains ours. But coastlines move. The tide changes, the map is redrawn, and what seemed permanent turns out to be a temporary arrangement.",
       },
       {
-        type: "paragraph",
-        text: "The most interesting work in AI does not begin with asking whether a model can cross a benchmark. It begins by noticing that the benchmark itself encodes yesterday’s imagination. A capability is not only discovered; it is also invited into existence by the quality of the question, the shape of the interface, and the patience of the person exploring it.",
+        type: "rich-paragraph",
+        content: [
+          "The most interesting work in AI does not begin with asking whether a model can cross a benchmark. It begins by noticing that the benchmark itself encodes yesterday’s imagination. The history from the Transformer ",
+          { type: "citation", reference: "vaswani-2017" },
+          " to foundation models ",
+          { type: "citation", reference: "bommasani-2021" },
+          " is also a history of changing interfaces, scales, and questions.",
+        ],
+      },
+      {
+        type: "figure",
+        src: "/og.png",
+        alt: "Jace Wong Intelligence and Beyond visual field map",
+        width: 1731,
+        height: 909,
+        caption:
+          "A working field map: intelligence as an orbit of tools, questions, and changing boundaries.",
+        credit: {
+          text: "Visual direction by Jace Wong",
+          href: "https://github.com/JaceWong-ai",
+        },
       },
       {
         type: "heading",
@@ -51,6 +106,11 @@ export const posts: Post[] = [
         text: "This is why I am drawn to systems that leave room for surprise. Reliability matters; so does legibility. But after those foundations, there should still be a door through which the unexpected can enter. A useful tool answers the question. A generative tool quietly changes the person asking it.",
       },
       {
+        type: "note",
+        label: "Field note",
+        text: "A benchmark is evidence about a system under a particular protocol—not a permanent map of intelligence.",
+      },
+      {
         type: "heading",
         text: "Work at the border",
       },
@@ -63,6 +123,24 @@ export const posts: Post[] = [
         text: "The edge moves when tools improve. More importantly, it moves when our questions do. That is the frontier worth paying attention to.",
       },
     ],
+    references: [
+      {
+        id: "vaswani-2017",
+        authors: "Vaswani, A. et al.",
+        title: "Attention Is All You Need",
+        source: "arXiv",
+        year: "2017",
+        href: "https://arxiv.org/abs/1706.03762",
+      },
+      {
+        id: "bommasani-2021",
+        authors: "Bommasani, R. et al.",
+        title: "On the Opportunities and Risks of Foundation Models",
+        source: "Stanford CRFM / arXiv",
+        year: "2021",
+        href: "https://arxiv.org/abs/2108.07258",
+      },
+    ],
   },
   {
     slug: "abstraction-is-a-form-of-leverage",
@@ -70,7 +148,9 @@ export const posts: Post[] = [
     title: "Abstraction is a form of leverage",
     dek: "Every useful abstraction hides detail. The art is deciding what can disappear without losing the truth.",
     category: "Technology & Mathematics",
-    date: "July 24, 2026",
+    publishedAt: "2026-07-18",
+    date: "July 18, 2026",
+    timelineDate: "18 JUL",
     readingTime: "6 min",
     accent: "amber",
     blocks: [
@@ -87,8 +167,20 @@ export const posts: Post[] = [
         text: "Mathematics as technology",
       },
       {
-        type: "paragraph",
-        text: "Mathematics is not only a language for describing the world. It is a technology for making patterns portable. Once a relation can be named, it can travel between physics, computation, economics, and any other domain willing to preserve its structure.",
+        type: "rich-paragraph",
+        content: [
+          "Mathematics makes patterns portable. Once a relation can be named, it can travel between physics, computation, economics, and any domain willing to preserve its structure. Computer science turns this movement into an explicit hierarchy of levels ",
+          { type: "citation", reference: "sep-computer-science" },
+          ".",
+        ],
+      },
+      {
+        type: "equation",
+        latex:
+          String.raw`\mathcal{A}(x)=g(f(x)),\qquad f:X\to Z,\quad g:Z\to Y`,
+        label: "01",
+        caption:
+          "An abstraction maps a detailed space X into a useful representation Z before acting in Y.",
       },
       {
         type: "quote",
@@ -111,6 +203,16 @@ export const posts: Post[] = [
         text: "The goal is not to avoid abstraction; thinking without it is impossible. The goal is to move fluently between the clean surface and the difficult machinery beneath it—to know when the map is enough, and when the terrain is asking to be seen.",
       },
     ],
+    references: [
+      {
+        id: "sep-computer-science",
+        authors: "Turner, R. & Angius, N.",
+        title: "The Philosophy of Computer Science",
+        source: "Stanford Encyclopedia of Philosophy",
+        year: "2025",
+        href: "https://plato.stanford.edu/entries/computer-science/",
+      },
+    ],
   },
   {
     slug: "reading-against-the-machine",
@@ -118,7 +220,9 @@ export const posts: Post[] = [
     title: "Reading against the machine",
     dek: "In an age of instant synthesis, slow reading becomes a way to preserve intellectual texture.",
     category: "Reading & Thought",
+    publishedAt: "2026-07-24",
     date: "July 24, 2026",
+    timelineDate: "24 JUL",
     readingTime: "5 min",
     accent: "cyan",
     blocks: [
@@ -135,8 +239,12 @@ export const posts: Post[] = [
         text: "Friction has a function",
       },
       {
-        type: "paragraph",
-        text: "The difficulty of a book is not always a defect waiting to be optimized away. Sometimes friction is the mechanism. It slows the mind enough for unfamiliar structures to take hold.",
+        type: "rich-paragraph",
+        content: [
+          "The difficulty of a book is not always a defect waiting to be optimized away. Sometimes friction is the mechanism. Research on print exposure describes a reinforcing relationship between reading practice and comprehension ",
+          { type: "citation", reference: "mol-bus-2011" },
+          ".",
+        ],
       },
       {
         type: "quote",
@@ -159,8 +267,24 @@ export const posts: Post[] = [
         text: "I read not because information is scarce, but because interiority is. The long path leaves traces that no summary can reproduce.",
       },
     ],
+    references: [
+      {
+        id: "mol-bus-2011",
+        authors: "Mol, S. E. & Bus, A. G.",
+        title:
+          "To read or not to read: a meta-analysis of print exposure from infancy to early adulthood",
+        source: "Psychological Bulletin / PubMed",
+        year: "2011",
+        href: "https://pubmed.ncbi.nlm.nih.gov/21219054/",
+      },
+    ],
   },
 ];
+
+export const posts = [...archive].sort(
+  (a, b) =>
+    new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+);
 
 export function getPost(slug: string) {
   return posts.find((post) => post.slug === slug);

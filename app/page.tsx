@@ -72,7 +72,7 @@ export default function Home() {
             <p>Writing</p>
             <span>AI · Technology · Reading</span>
           </div>
-          <h2>Latest essays</h2>
+          <h2>Latest blogs</h2>
           <Link href="/blog">All writing ↗</Link>
         </header>
 
@@ -84,7 +84,11 @@ export default function Home() {
               key={post.slug}
               data-reveal
             >
-              <span className="home-post-number">{post.number}</span>
+              <div className="home-post-timeline" aria-label={post.date}>
+                <time dateTime={post.publishedAt}>{post.timelineDate}</time>
+                <i aria-hidden="true" />
+                <span>{post.number}</span>
+              </div>
               <div>
                 <p>{post.category}</p>
                 <h3>

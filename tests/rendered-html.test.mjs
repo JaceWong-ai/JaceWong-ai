@@ -37,7 +37,13 @@ test("server-renders the finished personal homepage", async () => {
   assert.match(html, /Hi, I(?:&apos;|&#x27;)m Jace/);
   assert.match(html, /visualizations,/);
   assert.match(html, /interactive experiments\./);
-  assert.match(html, /Latest essays/);
+  assert.match(html, /Latest blogs/);
+  assert.match(html, /<time dateTime="2026-07-24">24 JUL<\/time>/);
+  assert.ok(
+    html.indexOf("Reading against the machine") <
+      html.indexOf("The edge is a moving agreement"),
+    "newest blog should render first",
+  );
   assert.doesNotMatch(
     html,
     /AI, systems, and the|This is my public notebook|I work with AI\.|I think beyond the model\.|<section class="home-about"|<section class="home-contact"/,
@@ -49,11 +55,18 @@ test("renders the writing index and article routes", async () => {
   const indexResponse = await render("/blog");
   assert.equal(indexResponse.status, 200);
   const indexHtml = await indexResponse.text();
-  assert.match(indexHtml, /Intelligence in/);
+  assert.match(indexHtml, /Blogs, in/);
   assert.match(indexHtml, /working form\./);
+  assert.match(indexHtml, /Archive · newest first/);
+  assert.match(indexHtml, /Latest blogs/);
   assert.match(indexHtml, /The edge is a moving agreement/);
   assert.match(indexHtml, /Abstraction is a form of leverage/);
   assert.match(indexHtml, /Reading against the machine/);
+  assert.ok(
+    indexHtml.indexOf("Reading against the machine") <
+      indexHtml.indexOf("Abstraction is a form of leverage"),
+    "writing index should render newest first",
+  );
   assert.doesNotMatch(indexHtml, /Investing|Attention is a portfolio/);
 
   const articleResponse = await render("/blog/the-edge-is-a-moving-agreement");
@@ -62,6 +75,10 @@ test("renders the writing index and article routes", async () => {
   assert.match(articleHtml, /The edge is a moving agreement/);
   assert.match(articleHtml, /A boundary is a prompt/);
   assert.match(articleHtml, /Written by Jace Wong/);
+  assert.match(articleHtml, /Visual direction by Jace Wong/);
+  assert.match(articleHtml, /References/);
+  assert.match(articleHtml, /Attention Is All You Need/);
+  assert.match(articleHtml, /href="#reference-vaswani-2017"/);
 
   const mathArticleResponse = await render(
     "/blog/abstraction-is-a-form-of-leverage",
@@ -70,4 +87,7 @@ test("renders the writing index and article routes", async () => {
   const mathArticleHtml = await mathArticleResponse.text();
   assert.match(mathArticleHtml, /Mathematics as technology/);
   assert.match(mathArticleHtml, /The cost of elegance/);
+  assert.match(mathArticleHtml, /class="article-equation"/);
+  assert.match(mathArticleHtml, /katex/);
+  assert.match(mathArticleHtml, /The Philosophy of Computer Science/);
 });

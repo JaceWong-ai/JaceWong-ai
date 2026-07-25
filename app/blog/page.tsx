@@ -16,15 +16,16 @@ export default function BlogPage() {
     <main className="blog-index-page">
       <SiteNav />
       <section className="blog-masthead">
+        <div className="blog-signal-grid" aria-hidden="true" />
         <div className="blog-masthead-top">
           <div className="section-index">
-            <span>INDEX</span>
-            <p>Field notes · Vol. I</p>
+            <span>LOG</span>
+            <p>Jace Wong · Writing</p>
           </div>
           <p className="blog-coordinate">AI / TECHNOLOGY / READING</p>
         </div>
         <h1>
-          <RevealWords text="Intelligence in" auto />
+          <RevealWords text="Blogs, in" auto />
           <br />
           <em>
             <RevealWords text="working form." auto delay={240} />
@@ -32,8 +33,8 @@ export default function BlogPage() {
         </h1>
         <div className="blog-masthead-bottom">
           <p>
-            Essays on artificial intelligence, software, mathematics, and the
-            books that change how I understand them.
+            Notes on artificial intelligence, software, mathematics, and
+            reading.
           </p>
           <span>{String(posts.length).padStart(2, "0")} entries</span>
         </div>
@@ -45,9 +46,13 @@ export default function BlogPage() {
       </section>
 
       <section className="blog-catalog">
+        <header className="blog-catalog-heading">
+          <p>Archive · newest first</p>
+          <h2>Latest blogs</h2>
+        </header>
         <div className="catalog-labels" aria-hidden="true">
-          <span>No.</span>
-          <span>Essay</span>
+          <span>Date</span>
+          <span>Blog</span>
           <span>Reading time</span>
         </div>
         {posts.map((post) => (
@@ -56,7 +61,11 @@ export default function BlogPage() {
             className={`catalog-entry accent-${post.accent}`}
             key={post.slug}
           >
-            <span className="catalog-number">{post.number}</span>
+            <div className="catalog-date">
+              <time dateTime={post.publishedAt}>{post.timelineDate}</time>
+              <i aria-hidden="true" />
+              <span>{post.number}</span>
+            </div>
             <div className="catalog-title">
               <p>{post.category}</p>
               <h2>{post.title}</h2>
@@ -74,13 +83,6 @@ export default function BlogPage() {
         ))}
       </section>
 
-      <section className="blog-afterword">
-        <p>Not a newsletter. Not a feed.</p>
-        <h2>A public record of thinking through systems.</h2>
-        <Link href="/#connect" className="text-link">
-          Keep the conversation going <i>↗</i>
-        </Link>
-      </section>
       <SiteFooter />
     </main>
   );
