@@ -12,7 +12,8 @@ export function SiteNav() {
   useEffect(() => {
     const current =
       document.documentElement.dataset.theme === "dark" ? "dark" : "light";
-    setTheme(current);
+    const frame = requestAnimationFrame(() => setTheme(current));
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   function toggleTheme() {
@@ -23,10 +24,9 @@ export function SiteNav() {
   }
 
   const links = [
-    { label: "Home", href: "/" },
-    { label: "Practice", href: "/#practice" },
+    { label: "Index", href: "/" },
     { label: "Writing", href: "/blog" },
-    { label: "Connect", href: "/#connect" },
+    { label: "About", href: "/#about" },
   ];
 
   return (

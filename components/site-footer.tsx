@@ -7,7 +7,7 @@ export function SiteFooter() {
         <Link href="/" className="footer-signature">
           Jace Wong
         </Link>
-        <p>Building at the edge. Thinking beyond it.</p>
+        <p>AI, ideas, and long horizons.</p>
       </div>
       <div className="footer-links">
         <Link href="/blog">Writing</Link>
