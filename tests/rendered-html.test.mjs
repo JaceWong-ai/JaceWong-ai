@@ -35,7 +35,8 @@ test("server-renders the finished personal homepage", async () => {
   assert.match(html, /Essays and experiments/);
   assert.match(html, /on intelligence\./);
   assert.match(html, /Hi, I(?:&apos;|&#x27;)m Jace/);
-  assert.match(html, /visualizations, and small interactive experiments/);
+  assert.match(html, /visualizations,/);
+  assert.match(html, /interactive experiments\./);
   assert.match(html, /Latest essays/);
   assert.doesNotMatch(
     html,

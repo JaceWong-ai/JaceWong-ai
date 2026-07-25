@@ -21,7 +21,7 @@ export default function Home() {
     );
 
     document
-      .querySelectorAll<HTMLElement>("[data-reveal]")
+      .querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-words]")
       .forEach((element) => observer.observe(element));
 
     return () => observer.disconnect();
@@ -43,14 +43,16 @@ export default function Home() {
             </h1>
             <p>
               Hi, I&apos;m Jace, and this is my blog. I write about AI,
-              software, mathematics, and the books that shape how I think.
+              <em>software, mathematics,</em> and the books that shape how I
+              think.
             </p>
           </div>
 
           <div className="home-notebook">
             <p>
               Each piece aims to make difficult ideas easier to explore through
-              clear writing, visualizations, and small interactive experiments.
+              clear writing, <em>visualizations,</em> and small{" "}
+              <em>interactive experiments.</em>
             </p>
             <Link href="/blog">
               Read the essays <span>↘</span>
@@ -75,7 +77,7 @@ export default function Home() {
         </header>
 
         <div className="home-posts">
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <Link
               href={`/blog/${post.slug}`}
               className={`home-post accent-${post.accent}`}
@@ -85,7 +87,9 @@ export default function Home() {
               <span className="home-post-number">{post.number}</span>
               <div>
                 <p>{post.category}</p>
-                <h3>{post.title}</h3>
+                <h3>
+                  <RevealWords text={post.title} delay={index * 90} />
+                </h3>
               </div>
               <div className="home-post-meta">
                 <span>{post.date}</span>
