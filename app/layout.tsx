@@ -23,13 +23,15 @@ export const metadata: Metadata = {
     template: "%s — Jace Wong",
   },
   description:
-    "Jace Wong is an AI practitioner exploring intelligence, philosophy, reading, investing, and the questions that shape what comes next.",
+    "Jace Wong is an AI practitioner writing about technology, philosophy, mathematics, reading, and the structures of intelligence.",
   keywords: [
     "Jace Wong",
     "artificial intelligence",
     "AI",
+    "technology",
     "philosophy",
-    "investing",
+    "mathematics",
+    "reading",
     "personal blog",
   ],
   authors: [{ name: "Jace Wong" }],
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "Jace Wong",
     title: "Jace Wong — Intelligence & Beyond",
     description:
-      "AI is my medium, not my boundary. Notes on intelligence, philosophy, reading, and capital.",
+      "Notes on artificial intelligence, technology, philosophy, mathematics, and reading.",
     images: [
       {
         url: new URL("/og.png", metadataBase).toString(),
@@ -53,7 +55,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Jace Wong — Intelligence & Beyond",
-    description: "AI is my medium, not my boundary. Notes from the moving edge.",
+    description:
+      "AI, technology, philosophy, mathematics, and reading—in working form.",
     images: [new URL("/og.png", metadataBase).toString()],
   },
   robots: {

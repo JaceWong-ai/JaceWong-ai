@@ -46,9 +46,12 @@ test("renders the writing index and article routes", async () => {
   const indexResponse = await render("/blog");
   assert.equal(indexResponse.status, 200);
   const indexHtml = await indexResponse.text();
-  assert.match(indexHtml, /Notes from the/);
+  assert.match(indexHtml, /Intelligence in/);
+  assert.match(indexHtml, /working form\./);
   assert.match(indexHtml, /The edge is a moving agreement/);
-  assert.match(indexHtml, /Attention is a portfolio/);
+  assert.match(indexHtml, /Abstraction is a form of leverage/);
+  assert.match(indexHtml, /Reading against the machine/);
+  assert.doesNotMatch(indexHtml, /Investing|Attention is a portfolio/);
 
   const articleResponse = await render("/blog/the-edge-is-a-moving-agreement");
   assert.equal(articleResponse.status, 200);
@@ -56,4 +59,12 @@ test("renders the writing index and article routes", async () => {
   assert.match(articleHtml, /The edge is a moving agreement/);
   assert.match(articleHtml, /A boundary is a prompt/);
   assert.match(articleHtml, /Written by Jace Wong/);
+
+  const mathArticleResponse = await render(
+    "/blog/abstraction-is-a-form-of-leverage",
+  );
+  assert.equal(mathArticleResponse.status, 200);
+  const mathArticleHtml = await mathArticleResponse.text();
+  assert.match(mathArticleHtml, /Mathematics as technology/);
+  assert.match(mathArticleHtml, /The cost of elegance/);
 });

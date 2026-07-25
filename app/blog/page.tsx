@@ -8,7 +8,7 @@ import { posts } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Writing",
   description:
-    "Field notes by Jace Wong on artificial intelligence, philosophy, reading, investing, and the moving edge of possibility.",
+    "Essays by Jace Wong on artificial intelligence, technology, mathematics, philosophy, and reading.",
 };
 
 export default function BlogPage() {
@@ -21,19 +21,19 @@ export default function BlogPage() {
             <span>INDEX</span>
             <p>Field notes · Vol. I</p>
           </div>
-          <p className="blog-coordinate">INTELLIGENCE / MEANING / TIME</p>
+          <p className="blog-coordinate">AI / TECHNOLOGY / READING</p>
         </div>
         <h1>
-          <RevealWords text="Notes from the" auto />
+          <RevealWords text="Intelligence in" auto />
           <br />
           <em>
-            <RevealWords text="moving edge." auto />
+            <RevealWords text="working form." auto delay={240} />
           </em>
         </h1>
         <div className="blog-masthead-bottom">
           <p>
-            Essays and fragments on the technologies we build, the ideas that
-            build us, and the futures hiding in plain sight.
+            Essays on artificial intelligence, software, mathematics, and the
+            books that change how I understand them.
           </p>
           <span>{String(posts.length).padStart(2, "0")} entries</span>
         </div>
@@ -76,7 +76,7 @@ export default function BlogPage() {
 
       <section className="blog-afterword">
         <p>Not a newsletter. Not a feed.</p>
-        <h2>A public record of changing my mind.</h2>
+        <h2>A public record of thinking through systems.</h2>
         <Link href="/#connect" className="text-link">
           Keep the conversation going <i>↗</i>
         </Link>

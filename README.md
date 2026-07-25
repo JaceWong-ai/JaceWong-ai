@@ -1,8 +1,8 @@
 # Jace Wong — Intelligence & Beyond
 
 Personal home and writing space for Jace Wong: an AI practitioner interested in
-intelligence, philosophy, reading, investing, and the questions shaping what
-comes next.
+intelligence, technology, philosophy, mathematics, reading, and the questions
+shaping what comes next.
 
 ## Run locally
 

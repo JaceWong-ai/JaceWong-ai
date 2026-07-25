@@ -3,15 +3,17 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { PlanetField } from "@/components/planet-field";
+import { RevealWords } from "@/components/reveal-words";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
+import { SymbolStream } from "@/components/symbol-stream";
 import { posts } from "@/lib/blog";
 
 const focusAreas = [
   "AI systems",
-  "Philosophy of technology",
+  "Technology & philosophy",
+  "Mathematics",
   "Reading & learning",
-  "Investing",
 ];
 
 export default function Home() {
@@ -36,15 +38,16 @@ export default function Home() {
     <main className="home-v2">
       <section className="home-hero">
         <PlanetField />
+        <SymbolStream />
         <SiteNav />
 
         <div className="home-hero-copy">
           <div className="home-introduction">
             <p className="home-name">Jace Wong</p>
             <h1>
-              AI, systems, and the
+              <RevealWords text="AI, systems, and the" auto />
               <br />
-              questions around them.
+              <RevealWords text="questions around them." auto delay={260} />
             </h1>
             <p>
               I build with artificial intelligence and study how it changes
@@ -55,7 +58,8 @@ export default function Home() {
           <div className="home-notebook">
             <p>
               This is my public notebook—essays, research notes, and ideas in
-              progress across technology, philosophy, reading, and capital.
+              progress across AI, technology, philosophy, mathematics, and
+              reading.
             </p>
             <Link href="/blog">
               Read the writing <span>↗</span>
@@ -73,7 +77,7 @@ export default function Home() {
         <header data-reveal>
           <div>
             <p>Selected writing</p>
-            <span>Essays & notes</span>
+            <span>AI · Technology · Reading</span>
           </div>
           <h2>Ideas, made public.</h2>
           <Link href="/blog">View all ↗</Link>
@@ -116,9 +120,9 @@ export default function Home() {
           </h2>
           <p>
             I&apos;m Jace Wong, an AI practitioner interested in the systems
-            behind intelligence and the human choices around it. My work and
-            writing follow one question: what becomes possible—and what becomes
-            important—when intelligence is abundant?
+            behind intelligence and the ideas beneath them. I write where
+            technology meets philosophy and mathematics: what becomes
+            possible—and what remains human—when intelligence is abundant?
           </p>
         </div>
 

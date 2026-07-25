@@ -88,6 +88,13 @@ const fragmentShaderSource = `
       smoothstep(-0.55, 0.5, uv.y)
     );
 
+    vec2 gridFrequency = vec2(24.0, 15.0);
+    vec2 gridCell = fract(frag * gridFrequency);
+    vec2 gridDistance = min(gridCell, 1.0 - gridCell);
+    float gridLine = 1.0 - smoothstep(0.0, 0.035, min(gridDistance.x, gridDistance.y));
+    float gridFade = smoothstep(0.0, 0.25, frag.y) * smoothstep(1.0, 0.56, frag.y);
+    color += vec3(0.035, 0.10, 0.24) * gridLine * gridFade * 0.28;
+
     float nebula = fbm(vec3(uv * 1.55 + vec2(time * 0.018, 0.0), time * 0.025));
     float nebulaMask = smoothstep(0.48, 0.86, nebula) * smoothstep(0.8, -0.25, length(uv));
     color += vec3(0.055, 0.07, 0.16) * nebulaMask * 0.55;
@@ -110,7 +117,7 @@ const fragmentShaderSource = `
     float ringRadius = length(ringSpace / vec2(1.82, 0.32)) / radius;
     float broadRing = smoothstep(1.76, 1.67, ringRadius) * smoothstep(1.12, 1.2, ringRadius);
     float ringTexture = 0.52 + 0.48 * sin(ringRadius * 116.0 + noise3(vec3(ringSpace * 26.0, time)) * 7.0);
-    float ringAlpha = broadRing * (0.18 + ringTexture * 0.24);
+    float ringAlpha = broadRing * (0.05 + ringTexture * 0.10);
     float rearRing = ringAlpha * step(0.0, ringSpace.y);
     color = mix(color, vec3(0.33, 0.48, 0.72), rearRing * smoothstep(0.92, 1.08, sphereDistance));
 
