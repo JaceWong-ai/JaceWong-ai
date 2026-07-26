@@ -87,7 +87,6 @@ export default function Home() {
               <div className="home-post-timeline" aria-label={post.date}>
                 <time dateTime={post.publishedAt}>{post.timelineDate}</time>
                 <i aria-hidden="true" />
-                <span>{post.number}</span>
               </div>
               <div>
                 <p>{post.category}</p>
@@ -96,7 +95,6 @@ export default function Home() {
                 </h3>
               </div>
               <div className="home-post-meta">
-                <span>{post.date}</span>
                 <span>{post.readingTime}</span>
                 <i>↗</i>
               </div>

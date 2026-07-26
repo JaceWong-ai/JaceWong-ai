@@ -1,7 +1,7 @@
 import Image from "next/image";
 import katex from "katex";
 import type { ReactNode } from "react";
-import type { Post, PostInline } from "@/lib/blog";
+import { headingId, type Post, type PostInline } from "@/lib/blog";
 
 type ArticleContentProps = {
   post: Post;
@@ -51,7 +51,11 @@ export function ArticleContent({ post }: ArticleContentProps) {
     <div className="article-body">
       {post.blocks.map((block, index) => {
         if (block.type === "heading") {
-          return <h2 key={index}>{block.text}</h2>;
+          return (
+            <h2 id={headingId(block.text)} key={index}>
+              {block.text}
+            </h2>
+          );
         }
 
         if (block.type === "quote") {

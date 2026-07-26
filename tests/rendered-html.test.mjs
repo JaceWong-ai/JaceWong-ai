@@ -57,7 +57,6 @@ test("renders the writing index and article routes", async () => {
   const indexHtml = await indexResponse.text();
   assert.match(indexHtml, /Blogs, in/);
   assert.match(indexHtml, /working form\./);
-  assert.match(indexHtml, /Archive · newest first/);
   assert.match(indexHtml, /Latest blogs/);
   assert.match(indexHtml, /The edge is a moving agreement/);
   assert.match(indexHtml, /Abstraction is a form of leverage/);
@@ -74,7 +73,9 @@ test("renders the writing index and article routes", async () => {
   const articleHtml = await articleResponse.text();
   assert.match(articleHtml, /The edge is a moving agreement/);
   assert.match(articleHtml, /A boundary is a prompt/);
-  assert.match(articleHtml, /Written by Jace Wong/);
+  assert.match(articleHtml, /aria-label="Table of contents"/);
+  assert.match(articleHtml, /href="#a-boundary-is-a-prompt"/);
+  assert.match(articleHtml, /id="a-boundary-is-a-prompt"/);
   assert.match(articleHtml, /Visual direction by Jace Wong/);
   assert.match(articleHtml, /References/);
   assert.match(articleHtml, /Attention Is All You Need/);

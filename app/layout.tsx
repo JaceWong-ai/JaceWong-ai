@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+import { Caveat, Geist_Mono, Inter } from "next/font/google";
 import "katex/dist/katex.min.css";
 import "./globals.css";
 
@@ -12,6 +12,12 @@ const inter = Inter({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const metadataBase = new URL(
@@ -89,7 +95,9 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${inter.variable} ${geistMono.variable}`}>
+      <body
+        className={`${inter.variable} ${geistMono.variable} ${caveat.variable}`}
+      >
         {children}
       </body>
     </html>

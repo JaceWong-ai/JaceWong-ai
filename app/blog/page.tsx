@@ -17,13 +17,6 @@ export default function BlogPage() {
       <SiteNav />
       <section className="blog-masthead">
         <div className="blog-signal-grid" aria-hidden="true" />
-        <div className="blog-masthead-top">
-          <div className="section-index">
-            <span>LOG</span>
-            <p>Jace Wong · Writing</p>
-          </div>
-          <p className="blog-coordinate">AI / TECHNOLOGY / READING</p>
-        </div>
         <h1>
           <RevealWords text="Blogs, in" auto />
           <br />
@@ -36,25 +29,17 @@ export default function BlogPage() {
             Notes on artificial intelligence, software, mathematics, and
             reading.
           </p>
-          <span>{String(posts.length).padStart(2, "0")} entries</span>
         </div>
         <div className="blog-arc" aria-hidden="true">
           <i />
           <i />
-          <span>J · W</span>
         </div>
       </section>
 
       <section className="blog-catalog">
         <header className="blog-catalog-heading">
-          <p>Archive · newest first</p>
           <h2>Latest blogs</h2>
         </header>
-        <div className="catalog-labels" aria-hidden="true">
-          <span>Date</span>
-          <span>Blog</span>
-          <span>Reading time</span>
-        </div>
         {posts.map((post) => (
           <Link
             href={`/blog/${post.slug}`}
@@ -64,7 +49,6 @@ export default function BlogPage() {
             <div className="catalog-date">
               <time dateTime={post.publishedAt}>{post.timelineDate}</time>
               <i aria-hidden="true" />
-              <span>{post.number}</span>
             </div>
             <div className="catalog-title">
               <p>{post.category}</p>
@@ -72,7 +56,6 @@ export default function BlogPage() {
               <span>{post.dek}</span>
             </div>
             <div className="catalog-meta">
-              <span>{post.date}</span>
               <span>{post.readingTime}</span>
               <i>↗</i>
             </div>

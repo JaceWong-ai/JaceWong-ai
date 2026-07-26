@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleContent } from "@/components/article-content";
+import { ArticleToc, type TocItem } from "@/components/article-toc";
 import { RevealWords } from "@/components/reveal-words";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
-import { getPost, posts } from "@/lib/blog";
+import { getPost, headingId, posts } from "@/lib/blog";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -40,6 +41,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const currentIndex = posts.findIndex((entry) => entry.slug === slug);
   const nextPost = posts[(currentIndex + 1) % posts.length];
+  const tocItems: TocItem[] = post.blocks.flatMap((block) =>
+    block.type === "heading"
+      ? [{ id: headingId(block.text), label: block.text }]
+      : [],
+  );
+  if (post.references.length) {
+    tocItems.push({ id: "references", label: "References" });
+  }
 
   return (
     <main className={`article-page accent-${post.accent}`}>
@@ -47,11 +56,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <article>
         <header className="article-header">
           <div className="blog-signal-grid" aria-hidden="true" />
-          <div className="article-breadcrumb">
-            <Link href="/blog">Blogs</Link>
-            <span>/</span>
-            <p>{post.number}</p>
-          </div>
+          <Link href="/blog" className="article-back-link">
+            ← All blogs
+          </Link>
           <div className="article-kicker">
             <span>{post.category}</span>
             <time dateTime={post.publishedAt}>{post.date}</time>
@@ -64,33 +71,17 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <div className="article-emblem" aria-hidden="true">
             <i />
             <i />
-            <span>{post.number}</span>
-          </div>
-          <div className="article-scroll-note">
-            <span>Begin</span>
-            <i />
           </div>
         </header>
 
         <div className="article-layout">
-          <aside className="article-aside">
-            <p>Blog / {post.number}</p>
-            <span>Written by Jace Wong</span>
-            <span>Published {post.date}</span>
-            <i />
-          </aside>
+          <ArticleToc items={tocItems} />
           <ArticleContent post={post} />
-          <aside className="article-progress" aria-hidden="true">
-            <span>01</span>
-            <i />
-            <span>{String(post.blocks.length).padStart(2, "0")}</span>
-          </aside>
         </div>
 
         <footer className="article-end">
           <p>Continue reading</p>
           <Link href={`/blog/${nextPost.slug}`}>
-            <span>{nextPost.number}</span>
             <h2>{nextPost.title}</h2>
             <i>↗</i>
           </Link>
