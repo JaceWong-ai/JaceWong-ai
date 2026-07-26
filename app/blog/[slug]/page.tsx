@@ -6,14 +6,14 @@ import { ArticleToc, type TocItem } from "@/components/article-toc";
 import { RevealWords } from "@/components/reveal-words";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
-import { getPost, headingId, posts } from "@/lib/blog";
+import { draftPosts, getPost, headingId, posts } from "@/lib/blog";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return posts.map((post) => ({ slug: post.slug }));
+  return [...posts, ...draftPosts].map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({

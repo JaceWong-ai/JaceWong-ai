@@ -61,42 +61,44 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="home-writing" id="writing">
-        <header data-reveal>
-          <div>
-            <p>Writing</p>
-            <span>AI · Technology · Reading</span>
-          </div>
-          <h2>Latest blogs</h2>
-          <Link href="/blog">All writing ↗</Link>
-        </header>
+      {posts.length > 0 && (
+        <section className="home-writing" id="writing">
+          <header data-reveal>
+            <div>
+              <p>Writing</p>
+              <span>AI · Technology · Reading</span>
+            </div>
+            <h2>Latest blogs</h2>
+            <Link href="/blog">All writing ↗</Link>
+          </header>
 
-        <div className="home-posts">
-          {posts.map((post, index) => (
-            <Link
-              href={`/blog/${post.slug}`}
-              className={`home-post accent-${post.accent}`}
-              key={post.slug}
-              data-reveal
-            >
-              <div className="home-post-timeline" aria-label={post.date}>
-                <time dateTime={post.publishedAt}>{post.timelineDate}</time>
-                <i aria-hidden="true" />
-              </div>
-              <div>
-                <p>{post.category}</p>
-                <h3>
-                  <RevealWords text={post.title} delay={index * 90} />
-                </h3>
-              </div>
-              <div className="home-post-meta">
-                <span>{post.readingTime}</span>
-                <i>↗</i>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+          <div className="home-posts">
+            {posts.map((post, index) => (
+              <Link
+                href={`/blog/${post.slug}`}
+                className={`home-post accent-${post.accent}`}
+                key={post.slug}
+                data-reveal
+              >
+                <div className="home-post-timeline" aria-label={post.date}>
+                  <time dateTime={post.publishedAt}>{post.timelineDate}</time>
+                  <i aria-hidden="true" />
+                </div>
+                <div>
+                  <p>{post.category}</p>
+                  <h3>
+                    <RevealWords text={post.title} delay={index * 90} />
+                  </h3>
+                </div>
+                <div className="home-post-meta">
+                  <span>{post.readingTime}</span>
+                  <i>↗</i>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <SiteFooter />
     </main>

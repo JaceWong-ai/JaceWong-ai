@@ -3931,6 +3931,22 @@ a {
   background: #05070b;
 }
 
+.blog-empty-state {
+  display: grid;
+  min-height: 34rem;
+  place-items: center;
+  padding: clamp(5rem, 10vw, 9rem) var(--page-pad);
+  border-top: 1px solid rgba(222, 227, 241, 0.1);
+  background: #05070b;
+}
+
+.blog-empty-state p {
+  color: rgba(222, 227, 241, 0.48);
+  font-family: var(--font-hand);
+  font-size: clamp(2.2rem, 5vw, 4.8rem);
+  line-height: 1;
+}
+
 .blog-catalog-heading {
   display: grid;
   grid-template-columns: 0.5fr 1fr;

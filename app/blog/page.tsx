@@ -36,35 +36,41 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <section className="blog-catalog">
-        <header className="blog-catalog-heading">
-          <h2>Latest blogs</h2>
-        </header>
-        {posts.map((post) => (
-          <Link
-            href={`/blog/${post.slug}`}
-            className={`catalog-entry accent-${post.accent}`}
-            key={post.slug}
-          >
-            <div className="catalog-date">
-              <time dateTime={post.publishedAt}>{post.timelineDate}</time>
-              <i aria-hidden="true" />
-            </div>
-            <div className="catalog-title">
-              <p>{post.category}</p>
-              <h2>{post.title}</h2>
-              <span>{post.dek}</span>
-            </div>
-            <div className="catalog-meta">
-              <span>{post.readingTime}</span>
-              <i>↗</i>
-            </div>
-            <div className="catalog-visual" aria-hidden="true">
-              <i />
-            </div>
-          </Link>
-        ))}
-      </section>
+      {posts.length > 0 ? (
+        <section className="blog-catalog">
+          <header className="blog-catalog-heading">
+            <h2>Latest blogs</h2>
+          </header>
+          {posts.map((post) => (
+            <Link
+              href={`/blog/${post.slug}`}
+              className={`catalog-entry accent-${post.accent}`}
+              key={post.slug}
+            >
+              <div className="catalog-date">
+                <time dateTime={post.publishedAt}>{post.timelineDate}</time>
+                <i aria-hidden="true" />
+              </div>
+              <div className="catalog-title">
+                <p>{post.category}</p>
+                <h2>{post.title}</h2>
+                <span>{post.dek}</span>
+              </div>
+              <div className="catalog-meta">
+                <span>{post.readingTime}</span>
+                <i>↗</i>
+              </div>
+              <div className="catalog-visual" aria-hidden="true">
+                <i />
+              </div>
+            </Link>
+          ))}
+        </section>
+      ) : (
+        <section className="blog-empty-state">
+          <p>No published notes yet.</p>
+        </section>
+      )}
 
       <SiteFooter />
     </main>

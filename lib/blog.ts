@@ -36,6 +36,7 @@ export type PostReference = {
 
 export type Post = {
   slug: string;
+  status: "draft" | "published";
   number: string;
   title: string;
   dek: string;
@@ -52,6 +53,7 @@ export type Post = {
 const archive: Post[] = [
   {
     slug: "the-edge-is-a-moving-agreement",
+    status: "draft",
     number: "001",
     title: "The edge is a moving agreement",
     dek: "What looks like a technical limit is often a temporary agreement between tools, language, and imagination.",
@@ -144,6 +146,7 @@ const archive: Post[] = [
   },
   {
     slug: "abstraction-is-a-form-of-leverage",
+    status: "draft",
     number: "002",
     title: "Abstraction is a form of leverage",
     dek: "Every useful abstraction hides detail. The art is deciding what can disappear without losing the truth.",
@@ -216,6 +219,7 @@ const archive: Post[] = [
   },
   {
     slug: "reading-against-the-machine",
+    status: "draft",
     number: "003",
     title: "Reading against the machine",
     dek: "In an age of instant synthesis, slow reading becomes a way to preserve intellectual texture.",
@@ -281,7 +285,16 @@ const archive: Post[] = [
   },
 ];
 
-export const posts = [...archive].sort(
+// Drafts stay in source as references for future writing, but are not exposed
+// through public lists, metadata, static routes, or article navigation.
+export const draftPosts = archive
+  .filter((post) => post.status === "draft")
+  .sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  );
+
+export const posts = archive.filter((post) => post.status === "published").sort(
   (a, b) =>
     new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
 );
