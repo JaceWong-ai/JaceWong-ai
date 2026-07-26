@@ -32,11 +32,13 @@ test("server-renders the finished personal homepage", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Jace Wong — Intelligence &amp; Beyond<\/title>/i);
-  assert.match(html, /Essays and experiments/);
-  assert.match(html, /on intelligence\./);
+  assert.match(html, /Thinking,/);
+  assert.match(html, /in progress\./);
   assert.match(html, /Hi, I(?:&apos;|&#x27;)m Jace/);
-  assert.match(html, /visualizations,/);
-  assert.match(html, /interactive experiments\./);
+  assert.match(html, /I work in AI\./);
+  assert.match(html, /keep a record of how I think/);
+  assert.match(html, /read, question, build,/);
+  assert.match(html, /Read the blogs/);
   assert.match(html, /Latest blogs/);
   assert.match(html, /<time dateTime="2026-07-24">24 JUL<\/time>/);
   assert.ok(

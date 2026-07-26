@@ -37,25 +37,20 @@ export default function Home() {
         <div className="home-hero-copy">
           <div className="home-introduction">
             <h1>
-              <RevealWords text="Essays and experiments" auto />
+              <RevealWords text="Thinking," auto />
               <br />
-              <RevealWords text="on intelligence." auto delay={240} />
+              <RevealWords text="in progress." auto delay={240} />
             </h1>
-            <p>
-              Hi, I&apos;m Jace, and this is my blog. I write about AI,
-              <em>software, mathematics,</em> and the books that shape how I
-              think.
-            </p>
+            <p>Hi, I&apos;m Jace. I work in AI.</p>
           </div>
 
           <div className="home-notebook">
             <p>
-              Each piece aims to make difficult ideas easier to explore through
-              clear writing, <em>visualizations,</em> and small{" "}
-              <em>interactive experiments.</em>
+              I write here to keep a record of how I think—what I{" "}
+              <em>read, question, build,</em> and slowly come to understand.
             </p>
             <Link href="/blog">
-              Read the essays <span>↘</span>
+              Read the blogs <span>↘</span>
             </Link>
           </div>
         </div>
